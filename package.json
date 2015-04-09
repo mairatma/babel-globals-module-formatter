@@ -15,6 +15,9 @@
   "files": [
     "index.js"
   ],
+  "scripts": {
+    "test": "nodeunit test/test.js"
+  },
   "keywords": [
     "babel",
     "es6",
