@@ -13,7 +13,6 @@ function GlobalsFormatter(file) {
   this._filename = file.opts.filename;
   this._filenameNoExt = this._filename.substr(0, this._filename.length - 3);
   this._globalName = file.opts._globalName || 'es6Globals';
-  this._sourceRoot = file.opts.sourceRoot || process.cwd();
   this._globals = {};
 }
 

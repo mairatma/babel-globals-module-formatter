@@ -160,11 +160,10 @@ module.exports = {
 	}
 };
 
-function getBabelOptions(filename, sourceRoot) {
+function getBabelOptions(filename) {
 	return {
 		_globalName: 'myGlobal',
 		filename: filename,
-		modules: GlobalsFormatter,
-		sourceRoot: sourceRoot
+		modules: GlobalsFormatter
 	};
 }
