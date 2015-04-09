@@ -31,8 +31,32 @@ module.exports = {
 		var babelOptions = getBabelOptions(path.resolve('foo/bar.js'));
 		var result = babel.transform(code, babelOptions);
 
-		var expectedResult = 'use strict;\n\nvar foo = this.myGlobal.foo;';
-		assert.notStrictEqual(expectedResult, result);
+		var expectedResult = '"use strict";\n\nvar foo = this.myGlobal.foo;';
+		assert.strictEqual(expectedResult, result.code);
+
+		test.done();
+	},
+
+	testWildcardImport: function(test) {
+		var code = 'import * as foo from "./foo"';
+		var babelOptions = getBabelOptions(path.resolve('foo/bar.js'));
+		var result = babel.transform(code, babelOptions);
+
+		var expectedResult = '"use strict";\n\nvar foo = this.myGlobalNamed.foo;';
+		assert.strictEqual(expectedResult, result.code);
+
+		test.done();
+	},
+
+	testNamedImport: function(test) {
+		var code = 'import {foo, bar} from "./foo"';
+		var babelOptions = getBabelOptions(path.resolve('foo/bar.js'));
+		var result = babel.transform(code, babelOptions);
+
+		var expectedResult = '"use strict";\n\n' +
+			'var foo = this.myGlobalNamed.foo.foo;\n' +
+			'var bar = this.myGlobalNamed.foo.bar;';
+		assert.strictEqual(expectedResult, result.code);
 
 		test.done();
 	}
