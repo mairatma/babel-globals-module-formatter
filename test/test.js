@@ -59,6 +59,86 @@ module.exports = {
 		assert.strictEqual(expectedResult, result.code);
 
 		test.done();
+	},
+
+	testDefaultExport: function(test) {
+		var code = 'export default foo';
+		var babelOptions = getBabelOptions(path.resolve('foo/bar.js'));
+		var result = babel.transform(code, babelOptions);
+
+		var expectedResult = '"use strict";\n\n' +
+			'this.myGlobal = {};\n' +
+			'this.myGlobal.bar = foo;';
+		assert.strictEqual(expectedResult, result.code);
+
+		test.done();
+	},
+
+	testDefaultAssignmentExport: function(test) {
+		var code = 'export default "foo"';
+		var babelOptions = getBabelOptions(path.resolve('foo/bar.js'));
+		var result = babel.transform(code, babelOptions);
+
+		var expectedResult = '"use strict";\n\n' +
+			'this.myGlobal = {};\n' +
+			'this.myGlobal.bar = "foo";';
+		assert.strictEqual(expectedResult, result.code);
+
+		test.done();
+	},
+
+	testNamedExport: function(test) {
+		var code = 'export {foo, bar}';
+		var babelOptions = getBabelOptions(path.resolve('foo/bar.js'));
+		var result = babel.transform(code, babelOptions);
+
+		var expectedResult = '"use strict";\n\n' +
+			'this.myGlobalNamed = {};\n' +
+			'this.myGlobalNamed.bar = {};\n' +
+			'this.myGlobalNamed.bar.foo = foo;\n' +
+			'this.myGlobalNamed.bar.bar = bar;';
+		assert.strictEqual(expectedResult, result.code);
+
+		test.done();
+	},
+
+	testNamedAssignmentExport: function(test) {
+		var code = 'export var foo = "foo"';
+		var babelOptions = getBabelOptions(path.resolve('foo/bar.js'));
+		var result = babel.transform(code, babelOptions);
+
+		var expectedResult = '"use strict";\n\n' +
+			'var foo = "foo";\n' +
+			'this.myGlobalNamed = {};\n' +
+			'this.myGlobalNamed.bar = {};\n' +
+			'this.myGlobalNamed.bar.foo = foo;';
+		assert.strictEqual(expectedResult, result.code);
+
+		test.done();
+	},
+
+	testNamedSourceExport: function(test) {
+		var code = 'export {foo, bar} from "./foo"';
+		var babelOptions = getBabelOptions(path.resolve('foo/bar.js'));
+		var result = babel.transform(code, babelOptions);
+
+		var expectedResult = '"use strict";\n\n' +
+			'this.myGlobalNamed = {};\n' +
+			'this.myGlobalNamed.bar = {};\n' +
+			'this.myGlobalNamed.bar.foo = this.myGlobalNamed.foo.foo;\n' +
+			'this.myGlobalNamed.bar.bar = this.myGlobalNamed.foo.bar;';
+		assert.strictEqual(expectedResult, result.code);
+		test.done();
+	},
+
+	testWildcardSourceExport: function(test) {
+		var code = 'export * from "foo"';
+		var babelOptions = getBabelOptions(path.resolve('foo/bar.js'));
+		var result = babel.transform(code, babelOptions);
+
+		var expectedResult = '"use strict";';
+		assert.strictEqual(expectedResult, result.code);
+		test.done();
 	}
 };
 
