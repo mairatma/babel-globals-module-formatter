@@ -17,9 +17,17 @@ function GlobalsFormatter(file) {
   this._globals = {};
 }
 
+/**
+ * This runs after all transformers have had their turn at modifying the ast.
+ * @param  {[type]} ast [description]
+ * @return {[type]}     [description]
+ */
 GlobalsFormatter.prototype.transform = function (ast) {
-  // This runs after all transformers have had their turn at modifying the ast.
-  // TODO: Wrap everything in a self calling closure.
+  var contents = ast.body;
+  ast.body = [t.callExpression(
+    t.functionDeclaration(null, [], t.blockStatement(contents)),
+    [t.identifier('this')]
+  )];
 };
 
 /**
