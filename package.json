@@ -1,0 +1,28 @@
+{
+  "name": "babel-globals-module-formatter",
+  "version": "0.1.1",
+  "description": "A babel module formatter that exposes exported content to globals.",
+  "license": "MIT",
+  "repository": "mairatma/babel-globals-module-formatter",
+  "author": {
+    "name": "Maira Bello",
+    "email": "maira.araujo@liferay.com"
+  },
+  "engines": {
+    "node": ">=0.12.0"
+  },
+  "main": "index.js",
+  "files": [
+    "index.js"
+  ],
+  "keywords": [
+    "babel",
+    "es6",
+    "module",
+    "module-formatter",
+    "globals"
+  ],
+  "dependencies": {
+    "babel": "^5.0.12"
+  }
+}
