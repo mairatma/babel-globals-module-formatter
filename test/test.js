@@ -31,9 +31,9 @@ module.exports = {
 		var babelOptions = getBabelOptions(path.resolve('foo/bar.js'));
 		var result = babel.transform(code, babelOptions);
 
-		var expectedResult = 'function () {\n' +
+		var expectedResult = '(function () {\n' +
 			'  "use strict";\n\n  var foo = this.myGlobal.foo;\n' +
-			'}(this)';
+			'}).call(this)';
 		assert.strictEqual(expectedResult, result.code);
 
 		test.done();
@@ -44,9 +44,9 @@ module.exports = {
 		var babelOptions = getBabelOptions(path.resolve('foo/bar.js'));
 		var result = babel.transform(code, babelOptions);
 
-		var expectedResult = 'function () {\n' +
+		var expectedResult = '(function () {\n' +
 			'  "use strict";\n\n  var foo = this.myGlobalNamed.foo;\n' +
-			'}(this)';
+			'}).call(this)';
 		assert.strictEqual(expectedResult, result.code);
 
 		test.done();
@@ -57,11 +57,11 @@ module.exports = {
 		var babelOptions = getBabelOptions(path.resolve('foo/bar.js'));
 		var result = babel.transform(code, babelOptions);
 
-		var expectedResult = 'function () {\n' +
+		var expectedResult = '(function () {\n' +
 			'  "use strict";\n\n' +
 			'  var foo = this.myGlobalNamed.foo.foo;\n' +
 			'  var bar = this.myGlobalNamed.foo.bar;\n' +
-			'}(this)';
+			'}).call(this)';
 		assert.strictEqual(expectedResult, result.code);
 
 		test.done();
@@ -72,10 +72,10 @@ module.exports = {
 		var babelOptions = getBabelOptions(path.resolve('foo/bar.js'));
 		var result = babel.transform(code, babelOptions);
 
-		var expectedResult = 'function () {\n' +
+		var expectedResult = '(function () {\n' +
 			'  "use strict";\n\n' +
 			'  this.myGlobal.bar = foo;\n' +
-			'}(this)';
+			'}).call(this)';
 		assert.strictEqual(expectedResult, result.code);
 
 		test.done();
@@ -86,10 +86,10 @@ module.exports = {
 		var babelOptions = getBabelOptions(path.resolve('foo/bar.js'));
 		var result = babel.transform(code, babelOptions);
 
-		var expectedResult = 'function () {\n' +
+		var expectedResult = '(function () {\n' +
 			'  "use strict";\n\n' +
 			'  this.myGlobal.bar = "foo";\n' +
-			'}(this)';
+			'}).call(this)';
 		assert.strictEqual(expectedResult, result.code);
 
 		test.done();
@@ -100,12 +100,12 @@ module.exports = {
 		var babelOptions = getBabelOptions(path.resolve('foo/bar.js'));
 		var result = babel.transform(code, babelOptions);
 
-		var expectedResult = 'function () {\n' +
+		var expectedResult = '(function () {\n' +
 			'  "use strict";\n\n' +
 			'  this.myGlobalNamed.bar = {};\n' +
 			'  this.myGlobalNamed.bar.foo = foo;\n' +
 			'  this.myGlobalNamed.bar.bar = bar;\n' +
-			'}(this)';
+			'}).call(this)';
 		assert.strictEqual(expectedResult, result.code);
 
 		test.done();
@@ -116,12 +116,12 @@ module.exports = {
 		var babelOptions = getBabelOptions(path.resolve('foo/bar.js'));
 		var result = babel.transform(code, babelOptions);
 
-		var expectedResult = 'function () {\n' +
+		var expectedResult = '(function () {\n' +
 			'  "use strict";\n\n' +
 			'  var foo = "foo";\n' +
 			'  this.myGlobalNamed.bar = {};\n' +
 			'  this.myGlobalNamed.bar.foo = foo;\n' +
-			'}(this)';
+			'}).call(this)';
 		assert.strictEqual(expectedResult, result.code);
 
 		test.done();
@@ -132,12 +132,12 @@ module.exports = {
 		var babelOptions = getBabelOptions(path.resolve('foo/bar.js'));
 		var result = babel.transform(code, babelOptions);
 
-		var expectedResult = 'function () {\n' +
+		var expectedResult = '(function () {\n' +
 			'  "use strict";\n\n' +
 			'  this.myGlobalNamed.bar = {};\n' +
 			'  this.myGlobalNamed.bar.foo = this.myGlobalNamed.foo.foo;\n' +
 			'  this.myGlobalNamed.bar.bar = this.myGlobalNamed.foo.bar;\n' +
-			'}(this)';
+			'}).call(this)';
 		assert.strictEqual(expectedResult, result.code);
 		test.done();
 	},
@@ -147,9 +147,9 @@ module.exports = {
 		var babelOptions = getBabelOptions(path.resolve('foo/bar.js'));
 		var result = babel.transform(code, babelOptions);
 
-		var expectedResult = 'function () {\n' +
+		var expectedResult = '(function () {\n' +
 			'  "use strict";\n' +
-			'}(this)';
+			'}).call(this)';
 		assert.strictEqual(expectedResult, result.code);
 		test.done();
 	}
