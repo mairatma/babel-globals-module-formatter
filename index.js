@@ -1,3 +1,5 @@
+'use strict';
+
 var babel = require('babel');
 var path = require('path');
 

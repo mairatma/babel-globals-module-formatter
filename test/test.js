@@ -1,6 +1,7 @@
+'use strict';
+
 var assert = require('assert');
 var babel = require('babel');
-var fs = require('fs');
 var GlobalsFormatter = require('../index');
 var path = require('path');
 
