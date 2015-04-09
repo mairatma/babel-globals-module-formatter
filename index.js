@@ -135,9 +135,9 @@ GlobalsFormatter.prototype._createGlobal = function(name, nodes) {
   var keys = name.split('.');
 
   var currentGlobal = this._globals;
-  var currentGlobalName = 'this';
+  var currentGlobalName = 'this.' + keys[1];
   var id;
-  for (var i = 1; i < keys.length - 1; i++) {
+  for (var i = 2; i < keys.length - 1; i++) {
     currentGlobalName += '.' + keys[i];
     id = t.identifier(currentGlobalName);
 

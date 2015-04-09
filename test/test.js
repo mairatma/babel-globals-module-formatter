@@ -74,7 +74,6 @@ module.exports = {
 
 		var expectedResult = 'function () {\n' +
 			'  "use strict";\n\n' +
-			'  this.myGlobal = {};\n' +
 			'  this.myGlobal.bar = foo;\n' +
 			'}(this)';
 		assert.strictEqual(expectedResult, result.code);
@@ -89,7 +88,6 @@ module.exports = {
 
 		var expectedResult = 'function () {\n' +
 			'  "use strict";\n\n' +
-			'  this.myGlobal = {};\n' +
 			'  this.myGlobal.bar = "foo";\n' +
 			'}(this)';
 		assert.strictEqual(expectedResult, result.code);
@@ -104,7 +102,6 @@ module.exports = {
 
 		var expectedResult = 'function () {\n' +
 			'  "use strict";\n\n' +
-			'  this.myGlobalNamed = {};\n' +
 			'  this.myGlobalNamed.bar = {};\n' +
 			'  this.myGlobalNamed.bar.foo = foo;\n' +
 			'  this.myGlobalNamed.bar.bar = bar;\n' +
@@ -122,7 +119,6 @@ module.exports = {
 		var expectedResult = 'function () {\n' +
 			'  "use strict";\n\n' +
 			'  var foo = "foo";\n' +
-			'  this.myGlobalNamed = {};\n' +
 			'  this.myGlobalNamed.bar = {};\n' +
 			'  this.myGlobalNamed.bar.foo = foo;\n' +
 			'}(this)';
@@ -138,7 +134,6 @@ module.exports = {
 
 		var expectedResult = 'function () {\n' +
 			'  "use strict";\n\n' +
-			'  this.myGlobalNamed = {};\n' +
 			'  this.myGlobalNamed.bar = {};\n' +
 			'  this.myGlobalNamed.bar.foo = this.myGlobalNamed.foo.foo;\n' +
 			'  this.myGlobalNamed.bar.bar = this.myGlobalNamed.foo.bar;\n' +
