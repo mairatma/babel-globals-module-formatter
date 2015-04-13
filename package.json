@@ -1,6 +1,6 @@
 {
   "name": "babel-globals-module-formatter",
-  "version": "0.1.3",
+  "version": "0.1.4",
   "description": "A babel module formatter that exposes exported content to globals.",
   "license": "MIT",
   "repository": "mairatma/babel-globals-module-formatter",
