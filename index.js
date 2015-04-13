@@ -23,14 +23,14 @@ function GlobalsFormatter(file) {
  */
 GlobalsFormatter.prototype.transform = function (ast) {
   var contents = ast.body;
-  ast.body = [t.callExpression(
+  ast.body = [t.expressionStatement(t.callExpression(
     t.memberExpression(
       t.functionExpression(null, [], t.blockStatement(contents)),
       t.identifier('call'),
       false
     ),
     [t.identifier('this')]
-  )];
+  ))];
 };
 
 /**
